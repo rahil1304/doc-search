@@ -18,6 +18,7 @@ function App() {
   };
 
   let handleKeyword = (newKeyword) => {
+    newKeyword = newKeyword.slice(1, newKeyword.length);
     setKeyword(newKeyword);
   };
 
