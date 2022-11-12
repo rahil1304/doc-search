@@ -9,10 +9,10 @@ const app = express();
 const SerpApi = require("google-search-results-nodejs");
 const search = new SerpApi.GoogleSearch(API_KEY);
 
-async function getSearchData() {
+async function getSearchData(word) {
   let results = await axios
     .get(
-      "https://serpapi.com/search.json?engine=google&q=Coffee&google_domain=google.com&gl=us&hl=en&device=desktop&api_key=6eee262362ca892b8a5a7ebe0ac4f4294af03305db5fe35c2315af87370a5384"
+      `https://serpapi.com/search.json?engine=google&q=${word}&google_domain=google.com&gl=us&hl=en&device=desktop&api_key=6eee262362ca892b8a5a7ebe0ac4f4294af03305db5fe35c2315af87370a5384`
     )
     .then((results) => {
       let searchResults = results.data;
@@ -22,8 +22,8 @@ async function getSearchData() {
   return results;
 }
 
-app.get("/search", async (req, res) => {
-  let results = await getSearchData();
+app.get("/search/:word", async (req, res) => {
+  let results = await getSearchData(req.params.word);
   res.send({ searchResults: results });
 });
 
