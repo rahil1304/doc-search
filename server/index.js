@@ -32,6 +32,10 @@ app.get("/express_backend", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
+app.get("/hello", (req, res) => {
+  res.send({ express: "Hello World!" });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
